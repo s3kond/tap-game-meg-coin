@@ -1,25 +1,51 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ru">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tap Game</title>
+    <title>Игра Тапалка</title>
     <link rel="stylesheet" href="styles.css">
+    <script src="https://telegram.org/js/telegram-web-app.js"></script>
 </head>
 <body>
-    <div id="game-container">
-        <div id="coin-counter">Монеты: 0</div>
-        <div id="circle"></div>
+<div class="container">
+    <div class="header">
+        <div class="stat-box telegram-nickname">
+            Ник телеграма: <span id="telegram-nickname-display">не указан</span>
+        </div>
+        <div class="stats">
+            <div class="stat-box">Прибыль за тап<br><span id="profit-per-tap">1</span></div>
+            <div class="stat-box">Монеты до апа<br><span id="coins-to-upgrade">500K</span></div>
+        </div>
+        <div class="stat-box">
+            <div class="coin-display">
+                <img class="coin-small" src="coin_small.png" alt="Монета">
+                <span id="coin-counter">0</span>
+            </div>
+        </div>
     </div>
-    <script>
-        let coinCount = 0;
-        const coinCounter = document.getElementById('coin-counter');
-        const circle = document.getElementById('circle');
+    <div class="coin-clicker" id="coin">
+        <img src="coin.png" alt="Монета">
+    </div>
+    <div class="footer">
+        <button class="button" id="update-left">Улучшения</button>
+        <button class="button" id="update-middle">Друзья</button>
+        <button class="button" id="update-right">Скоро</button>
+    </div>
+    <div class="energy">
+        <img class="lightning" src="lightning.png" alt="Молния">
+        <span id="energy-counter">1000/1000</span>
+    </div>
+</div>
 
-        circle.addEventListener('click', () => {
-            coinCount += 1;
-            coinCounter.textContent = `Монеты: ${coinCount}`;
-        });
-    </script>
+<div id="upgradeModal" class="modal">
+    <div class="modal-content">
+        <span class="close">&times;</span>
+        <p>Улучшение: +1 к кликам за <span id="upgradeCost">10</span> монет</p>
+        <button id="upgradeButton">Улучшить</button>
+    </div>
+</div>
+
+<script src="script.js"></script>
 </body>
 </html>
